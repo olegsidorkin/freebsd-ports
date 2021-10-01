@@ -74,6 +74,12 @@ CCACHE_PKG_PREFIX?=		${LOCALBASE}
 CCACHE_WRAPPER_PATH?=	${CCACHE_PKG_PREFIX}/libexec/ccache
 CCACHE_BIN?=			${CCACHE_PKG_PREFIX}/bin/ccache
 
+# Make ccache more efficient.
+# https://ccache.dev/manual/3.7.9.html#_compiling_in_different_directories
+MAKE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
+CONFIGURE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
+CFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
+
 # Avoid depends loops between ccache and pkg
 .    if !defined(NO_CCACHE_DEPEND) && \
     ${PKGORIGIN} != ${PKG_ORIGIN}
