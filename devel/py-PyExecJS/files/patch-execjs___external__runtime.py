@@ -5,7 +5,7 @@
      return ExternalRuntime(
          name="SpiderMonkey",
 -        command=["js"],
-+        command=["js52"],
++        command=["js78"],
          runner_source=_runner_sources.SpiderMonkey,
          tempfile=True
      )
