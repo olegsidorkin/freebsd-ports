@@ -21,8 +21,8 @@ OPTIONS_GROUP=		RUNTIME
 OPTIONS_GROUP_RUNTIME=	NODE SPIDERMONKEY
 NODE_DESC=		Use www/node as JavaScript backend
 NODE_RUN_DEPENDS=	node>=0.8.0:www/node
-SPIDERMONKEY_DESC=	Use lang/spidermonkey52 as JavaScript backend
-SPIDERMONKEY_RUN_DEPENDS=	js52:lang/spidermonkey52
+SPIDERMONKEY_DESC=	Use lang/spidermonkey78 as JavaScript backend
+SPIDERMONKEY_RUN_DEPENDS=	js78:lang/spidermonkey78
 OPTIONS_DEFAULT=	NODE
 
 .include <bsd.port.mk>
