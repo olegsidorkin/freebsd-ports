@@ -47,6 +47,11 @@ BLAS=		-lblas
 LAPACK=		-llapack
 LIB_DEPENDS+=	libblas.so:math/blas \
 		liblapack.so:math/lapack
+.elif ${WITH_BLAS} == "openblas"
+BLAS=		-lopenblas
+LAPACK=		-llapack
+LIB_DEPENDS+=	libopenblas.so:math/openblas \
+		liblapack.so:math/lapack
 .else
 IGNORE=		unknown value of WITH_BLAS: ${WITH_BLAS}
 .endif
