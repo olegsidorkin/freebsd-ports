@@ -38,6 +38,7 @@ CONFIGURE_ARGS=	--with-gfortran \
 		--with-eigen-include=${LOCALBASE}/include/eigen3 \
 		${ICONV_CONFIGURE_ARG}
 LDFLAGS+=	${ICONV_LIB}
+CFLAGS+=	-Wno-int-conversion
 
 CONFIGURE_ENV=	BLAS_LIBS="${BLASLIB}" LAPACK_LIBS="${LAPACKLIB}"
 INSTALL_TARGET=	install-strip
