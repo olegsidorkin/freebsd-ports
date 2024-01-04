@@ -80,6 +80,7 @@
     SUBDIR += pal
     SUBDIR += phd2
     SUBDIR += phoon
+    SUBDIR += plasma5-luna2
     SUBDIR += pngphoon
     SUBDIR += pp3
     SUBDIR += py-astlib
