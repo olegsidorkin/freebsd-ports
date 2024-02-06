@@ -1,6 +1,6 @@
 PORTNAME=	ccache
-DISTVERSION=	4.9
 DISTVERSIONPREFIX=	v
+DISTVERSION=	4.10.2
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
 
@@ -23,7 +23,8 @@ SUB_FILES=	world-ccache ccache-update-links.sh ccache_clean
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
 
-LIB_DEPENDS+=	libzstd.so:archivers/zstd
+LIB_DEPENDS+=	libzstd.so:archivers/zstd \
+		libxxhash.so:devel/xxhash
 
 # /bin/bash -> /bin/sh to reduce tests dep.
 SHEBANG_FILES=	test/*
@@ -32,9 +33,9 @@ bash_CMD=	/bin/sh
 
 CMAKE_OFF=	WARNINGS_AS_ERRORS \
 		ENABLE_IPO \
-		ZSTD_FROM_INTERNET \
 		ENABLE_TRACING \
 		REDIS_STORAGE_BACKEND
+CMAKE_ARGS+=	-D DEPS=LOCAL -D DEP_FMT=BUNDLED
 
 OPTIONS_DEFINE=	DOCS CLANGLINK LLVMLINK STATIC TEST
 OPTIONS_DEFAULT=CLANGLINK LLVMLINK
@@ -63,13 +64,13 @@ PLIST_SUB+=		CCLINKDIR="${CCLINKDIR}"
 CCACHE_COMPILERS+=	icc icpc
 .endif
 
-GNU_COMPILERS+=		48 8 9 10 11 12 13
+GNU_COMPILERS+=		10 11 12 13 14
 CCACHE_COMPILERS+=	cc c++ CC gcc g++ ${GNU_COMPILERS:S|^|gcc|} \
 			${GNU_COMPILERS:S|^|g++|} \
 			${GNU_COMPILERS:S|^|cpp|}
 
 .if ${PORT_OPTIONS:MCLANGLINK}
-CLANG_COMPILERS+=	10 11 12 13 14 15 16 17 -devel
+CLANG_COMPILERS+=	11 12 13 14 15 16 17 18 19
 CCACHE_COMPILERS+=	clang clang++ ${CLANG_COMPILERS:S|^|clang|} \
 			${CLANG_COMPILERS:S|^|clang++|} \
 			${CLANG_COMPILERS:S|^|cpp|}
