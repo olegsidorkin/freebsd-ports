@@ -56,6 +56,7 @@ BUILD_DEPENDS+=	${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:deve
 		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
 MOZ_OPTIONS+=	--with-wasi-sysroot=${LOCALBASE}/share/wasi-sysroot
 .endif
+LDFLAGS+=	"-Wl,--undefined-version"
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
