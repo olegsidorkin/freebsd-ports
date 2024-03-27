@@ -1,6 +1,14 @@
 /%%KMODDIR%%/dmabuf.ko
+%%DEBUG%%%%DEBUGDIR%%/%%KMODDIR%%/dmabuf.ko.debug
 %%AMDGPU%%/%%KMODDIR%%/amdgpu.ko
+%%DEBUG%%%%AMDGPU%%%%DEBUGDIR%%/%%KMODDIR%%/amdgpu.ko.debug
 /%%KMODDIR%%/drm.ko
+%%DEBUG%%%%DEBUGDIR%%/%%KMODDIR%%/drm.ko.debug
 %%I915%%/%%KMODDIR%%/i915kms.ko
+%%DEBUG%%%%I915%%%%DEBUGDIR%%/%%KMODDIR%%/i915kms.ko.debug
 /%%KMODDIR%%/radeonkms.ko
+%%DEBUG%%%%DEBUGDIR%%/%%KMODDIR%%/radeonkms.ko.debug
 /%%KMODDIR%%/ttm.ko
+%%DEBUG%%%%DEBUGDIR%%/%%KMODDIR%%/ttm.ko.debug
+%%DEBUG%%@dir %%DEBUGDIR%%/boot
+%%DEBUG%%@dir %%DEBUGDIR%%

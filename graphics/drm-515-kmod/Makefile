@@ -14,15 +14,20 @@ LICENSE_COMB=	multi
 ONLY_FOR_ARCHS=	amd64 powerpc64 powerpc64le
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64 and powerpc64
 
-CONFLICTS_INSTALL=	drm-510-kmod \
-			drm-61-kmod
-
 USES=		kmod uidfix compiler:c++11-lang
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
 GH_PROJECT=	drm-kmod
 GH_TAGNAME=	${DRM_KMOD_GH_TAGNAME}
+
+CONFLICTS_INSTALL=	drm-510-kmod \
+			drm-61-kmod
+
+OPTIONS_DEFINE=	DEBUG
+OPTIONS_SUB=	yes
+DEBUG_MAKE_ENV=	DEBUG_FLAGS=-g WITH_KERNEL_SYMBOLS=yes
+DEBUG_PLIST_SUB+=	DEBUGDIR="${DEBUGDIR}"
 
 .include <bsd.port.options.mk>
 
@@ -33,15 +38,19 @@ IGNORE=		not supported on older than 14.0, no kernel support
 IGNORE=		not supported on anything but FreeBSD (missing linuxkpi functionality)
 .endif
 
+MODS=	dmabuf/dmabuf drm/drm radeon/radeonkms ttm/ttm
 .if ${ARCH} == "amd64"
 PLIST_SUB+=	AMDGPU=""
 PLIST_SUB+=	I915=""
+MODS+=	amd/amdgpu/amdgpu i915/i915kms
 .elif ${ARCH} == "i386"
 PLIST_SUB+=	AMDGPU="@comment "
 PLIST_SUB+=	I915=""
+MODS+=	i915/i915kms
 .elif ${ARCH} == "aarch64" || ${ARCH:Mpowerpc*}
 PLIST_SUB+=	AMDGPU=""
 PLIST_SUB+=	I915="@comment "
+MODS+=	amd/amdgpu/amdgpu
 .else
 PLIST_SUB+=	AMDGPU="@comment "
 PLIST_SUB+=	I915="@comment "
@@ -52,5 +61,11 @@ MAKE_ENV+=	MAKEOBJDIRPREFIX=${WRKSRC}/obj
 pre-build:
 		${MKDIR} ${WRKSRC}/obj
 		(cd ${WRKSRC} ; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} obj)
+
+do-install-DEBUG-on:
+		@${MKDIR} ${STAGEDIR}${DEBUGDIR}${KMODDIR}
+.for m in ${MODS}
+		${INSTALL} ${WRKSRC}/obj${WRKSRC}/${m}.ko.debug ${STAGEDIR}${DEBUGDIR}${KMODDIR}
+.endfor
 
 .include <bsd.port.mk>
