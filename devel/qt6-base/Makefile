@@ -36,7 +36,7 @@ LIB_DEPENDS=	\
 		libzstd.so:archivers/zstd
 
 USES=		cmake compiler:c++17-lang gl gnome jpeg perl5 pkgconfig python \
-		qt-dist:6 shebangfix ssl
+		qt-dist:6 shebangfix ssl localbase
 USE_GL=		egl opengl
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 pango
 USE_LOCALE=	C.UTF-8
