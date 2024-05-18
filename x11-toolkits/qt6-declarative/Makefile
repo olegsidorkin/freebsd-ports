@@ -10,7 +10,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 
 USES=		cmake compiler:c++17-lang gl pkgconfig python \
-		qt-dist:6
+		qt-dist:6 localbase
 USE_GL=		opengl
 USE_QT=		base languageserver shadertools:build svg
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
