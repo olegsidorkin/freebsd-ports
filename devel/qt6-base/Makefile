@@ -36,7 +36,7 @@ LIB_DEPENDS=	libatk-1.0.so:accessibility/at-spi2-core \
 		libzstd.so:archivers/zstd
 
 USES=		cmake compiler:c++17-lang gl gnome jpeg perl5 pkgconfig python \
-		qt-dist:6 shebangfix ssl
+		qt-dist:6 shebangfix ssl localbase
 USE_GL=		egl opengl
 USE_GNOME=	cairo gdkpixbuf glib20 gtk30 pango
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
