@@ -1,0 +1,13 @@
+--- src/common/Constants.h.in.orig	2024-02-26 10:23:03 UTC
++++ src/common/Constants.h.in
+@@ -39,8 +39,8 @@
+ 
+ #define LOG_FILE                    "@LOG_FILE@"
+ 
+-#define UID_MIN                     @UID_MIN@
+-#define UID_MAX                     @UID_MAX@
++#define SDDM_UID_MIN                @UID_MIN@
++#define SDDM_UID_MAX                @UID_MAX@
+ 
+ #define HALT_COMMAND "@HALT_COMMAND@"
+ #define REBOOT_COMMAND "@REBOOT_COMMAND@"
