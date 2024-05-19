@@ -22,7 +22,7 @@ RUN_DEPENDS=	consolekit2>1.2.5:sysutils/consolekit2 \
 		xauth:x11/xauth \
 		xmessage:x11/xmessage
 
-USES=		cmake compiler:c++17-lang cpe pkgconfig python:build qt:5 xorg
+USES=		cmake compiler:c++17-lang cpe pkgconfig python:build qt:5 xorg localbase
 CPE_VENDOR=	${PORTNAME}_project
 USE_GITHUB=	yes
 USE_QT=		core declarative dbus gui network \
