@@ -1,6 +1,5 @@
 PORTNAME=	setuptools
-PORTVERSION=	63.1.0
-PORTREVISION=	1
+DISTVERSION=	70.0.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,18 +15,16 @@ WWW=		https://pypi.org/project/setuptools/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+
 USES=		cpe python
-USE_PYTHON=	allflavors autoplist concurrent distutils
-
 CPE_VENDOR=	python
+USE_PYTHON=	allflavors autoplist concurrent pep517
 
-MAKE_ENV+=	SETUPTOOLS_DISABLE_VERSIONED_EASY_INSTALL_SCRIPT=1
 NO_ARCH=	yes
-PYDISTUTILS_SETUP=	${PYSETUP}
 
-PLIST_FILES=	"@sample %%PYTHON_SITELIBDIR%%/easy-install.pth.dist %%PYTHON_SITELIBDIR%%/easy-install.pth"
-
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
 .if ${FLAVOR} != ${FLAVORS:[1]}
 SUB_FILES+=	pkg-message
@@ -39,10 +36,8 @@ SUB_LIST+=	PYTHON_VER=${PYTHON_VER}
 #TEST_DEPENDS=  ${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 # pkg install -y py38-pytest py38-mock py38-pytest-fixture-config py38-pytest-virtualenv py38-paver
 
-post-install:
-	${INSTALL_DATA} ${FILESDIR}/easy-install.pth.dist ${STAGEDIR}${PYTHON_SITELIBDIR}/
-
 do-test:
-	cd ${WRKSRC} && ${PYTHON_CMD} -m pytest -v -rs
+	cd ${WRKSRC} && \
+		${PYTHON_CMD} -m pytest -v -rs
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
