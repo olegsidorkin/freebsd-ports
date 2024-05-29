@@ -14,6 +14,8 @@ LICENSE_COMB=	multi
 LICENSE_FILE_LGPL20+ =	${WRKSRC}/COPYING.LGPL
 LICENSE_FILE_GPLv2+ =	${WRKSRC}/COPYING.GPL
 
+BUILD_DEPENDS=  ${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR}
+RUN_DEPENDS=  ${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR}
 LIB_DEPENDS=	libffi.so:devel/libffi
 
 FLAVORS=	default bootstrap
