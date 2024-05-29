@@ -19,7 +19,8 @@ tkversion = "%%TK_VER%%"
 prefix = sysconfig.PREFIX
 # Python 1.5 doesn't have os.getenv()?
 x11base = os.environ['LOCALBASE'] or '/usr/X11R6'
-inc_dirs = [prefix + "/include",
+inc_dirs = ["../Include/internal",
+	    prefix + "/include",
             prefix + "/include/tcl" + tkversion,
             prefix + "/include/tk" + tkversion,
             x11base + "/include"]
