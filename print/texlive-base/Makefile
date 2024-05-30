@@ -79,7 +79,10 @@ SHEBANG_FILES=	texk/texlive/linked_scripts/accfonts/mkt1font \
 	texk/texlive/linked_scripts/clojure-pamphlet/pamphletangler \
 	texk/texlive/linked_scripts/latex-papersize/latex-papersize.py \
 	texk/texlive/linked_scripts/makedtx/makedtx.pl \
-	texk/texlive/linked_scripts/pdfbook2/pdfbook2
+	texk/texlive/linked_scripts/pdfbook2/pdfbook2 \
+	texk/texlive/linked_scripts/memoize/memoize-extract.py \
+	texk/texlive/linked_scripts/memoize/memoize-clean.py \
+	texk/texlive/linked_scripts/eolang/eolang.pl
 
 # during build phase gnu configure is run a lot
 GNU_CONFIGURE=	yes
