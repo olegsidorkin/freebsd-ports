@@ -5038,6 +5038,7 @@
     SUBDIR += py-ipyparallel
     SUBDIR += py-ipython_genutils
     SUBDIR += py-ipywidgets
+    SUBDIR += py-isal
     SUBDIR += py-iso8601
     SUBDIR += py-isodate
     SUBDIR += py-isoduration
