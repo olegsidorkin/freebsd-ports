@@ -2,6 +2,7 @@ PORTNAME=	rss-bridge
 DISTVERSION=	2024-02-02
 PORTEPOCH=	1
 CATEGORIES=	www
+PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	osidorkin@gmail.com
 COMMENT=	RSS feed generator for websites missing it
@@ -9,7 +10,7 @@ WWW=		https://github.com/RSS-Bridge/rss-bridge
 
 LICENSE=	UNLICENSE
 
-USES=		php:web
+USES=		php:web,flavors
 USE_GITHUB=	yes
 GH_ACCOUNT=	RSS-Bridge
 USE_PHP=	curl mbstring simplexml zip
