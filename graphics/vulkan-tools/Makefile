@@ -12,7 +12,7 @@ LICENSE=	APACHE20
 BUILD_DEPENDS=	glslangValidator:graphics/glslang \
 		vulkan-headers>0:graphics/vulkan-headers
 
-USES=		alias cmake compiler:c++11-lib pkgconfig python:build
+USES=		alias cmake compiler:c++11-lib pkgconfig python:build localbase
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	Vulkan-Tools
