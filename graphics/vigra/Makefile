@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LIB_DEPENDS=	libImath.so:math/Imath \
 		libsz.so:science/libaec
 
-USES=		cmake compiler:c++14-lang python:run shebangfix
+USES=		cmake compiler:c++14-lang localbase python:run shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	ukoethe
 GH_TAGNAME=	8acd73a
