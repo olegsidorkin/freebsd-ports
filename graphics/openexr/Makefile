@@ -40,7 +40,7 @@ BUILD_DEPENDS?=	help2man:misc/help2man
 LIB_DEPENDS?=	libImath-3_1.so.29:math/Imath \
 		libdeflate.so:archivers/libdeflate
 
-USES?=		cmake:testing compiler:c++14-lang cpe pathfix pkgconfig
+USES?=		cmake:testing compiler:c++14-lang cpe localbase pathfix pkgconfig
 
 #USE_GITHUB=	yes
 #GH_TUPLE=	AcademySoftwareFoundation:openexr:v${PORTVERSION}
