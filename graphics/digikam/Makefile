@@ -39,7 +39,7 @@ LIB_DEPENDS=	libKF5Sane.so:graphics/libksane \
 RUN_DEPENDS=	exiftool:graphics/p5-Image-ExifTool
 
 USES=		bison cmake compiler:c++17-lang desktop-file-utils eigen:3 gl \
-		gnome jpeg kde:5 magick pkgconfig qt:5 \
+		gnome jpeg kde:5 localbase magick pkgconfig qt:5 \
 		shebangfix tar:xz xorg
 USE_GL=		opengl glu
 USE_GNOME=	glib20 libxml2 libxslt
