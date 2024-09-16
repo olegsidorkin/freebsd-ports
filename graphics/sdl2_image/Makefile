@@ -10,7 +10,7 @@ WWW=		https://github.com/libsdl-org/SDL_image
 LICENSE=	ZLIB
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		cmake sdl
+USES=		cmake localbase sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	libsdl-org
 GH_PROJECT=	SDL_image
