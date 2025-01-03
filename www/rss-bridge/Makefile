@@ -1,5 +1,5 @@
 PORTNAME=	rss-bridge
-DISTVERSION=	2024-02-02
+DISTVERSION=	2025-01-02
 PORTEPOCH=	1
 CATEGORIES=	www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -38,7 +38,7 @@ do-install:
 	    -or -name composer.lock -or -name docker-bake.hcl \
 	    -or -name docker-entrypoint.sh \
 	    -or -path ./bin -or -path ./bin/cache-clear \
-	    -or -path ./bin/cache-prune \
+	    -or -path ./bin/cache-prune -or -path ./bin/test \
 	    -or -path ./config -or -path ./config/nginx.conf \
 	    -or -path ./config/php-fpm.conf -or -path ./config/php.ini \
 	    -or -regex ./.devcontainer.* -or -regex ./contrib.* \
