@@ -1,5 +1,5 @@
 PORTNAME=	lxml
-PORTVERSION=	4.9.3
+PORTVERSION=	5.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
 USES=		compiler cpe gnome python uniquefiles:dirs
 USE_GNOME=	libxml2 libxslt
-USE_PYTHON=	autoplist concurrent cython distutils
+USE_PYTHON=	autoplist concurrent distutils
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython3>=0:lang/cython3@${PY_FLAVOR}
 
 LDFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib
 
