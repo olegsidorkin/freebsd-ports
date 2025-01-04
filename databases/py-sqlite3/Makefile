@@ -22,10 +22,11 @@ USE_PYTHON=	autoplist allflavors
 .if ${FLAVOR:U} == py27
 USE_PYTHON+=	distutils
 .else
-USE_PYTHON+=	cython pep517
+USE_PYTHON+=	pep517
 BUILD_DEPENDS+=	${UNZIP_CMD}:archivers/unzip \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}cython3>0:lang/cython3@${PY_FLAVOR}
 .endif
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
