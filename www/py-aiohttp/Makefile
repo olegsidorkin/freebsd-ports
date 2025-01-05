@@ -13,7 +13,8 @@ WWW=		https://docs.aiohttp.org/en/stable/ \
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=46.4.0:devel/py-setuptools@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython3>=0:lang/cython3@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=46.4.0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohappyeyeballs>=2.3.0:net/py-aiohappyeyeballs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}aiosignal>=1.1.2:devel/py-aiosignal@${PY_FLAVOR} \
@@ -31,7 +32,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiodns>=1.1:dns/py-aiodns@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-codspeed>=0:devel/py-pytest-codspeed@${PY_FLAVOR}
 
 USES=		cpe python:3.9+
-USE_PYTHON=	autoplist concurrent cython pep517 pytest
+USE_PYTHON=	autoplist concurrent pep517 pytest
 
 CPE_VENDOR=	aiohttp_project
 
