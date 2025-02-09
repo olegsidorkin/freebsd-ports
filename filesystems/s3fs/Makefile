@@ -5,6 +5,9 @@ PORTREVISION=	1
 CATEGORIES=	filesystems
 PKGNAMEPREFIX=	fusefs-
 
+PATCH_SITES=    https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES=	0fc26ee3ef9a2dd365c430816a83d7f5639da01a.patch:-p1
+
 MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	FUSE-based file system backed by Amazon S3
 WWW=		https://github.com/s3fs-fuse/s3fs-fuse
