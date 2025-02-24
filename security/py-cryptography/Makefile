@@ -1,5 +1,5 @@
 PORTNAME=	cryptography
-PORTVERSION=	42.0.8
+PORTVERSION=	44.0.1
 PORTREVISION=	8
 PORTEPOCH=	1
 CATEGORIES=	security python
@@ -18,6 +18,7 @@ LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE.APACHE
 LICENSE_FILE_BSD3CLAUSE=${WRKSRC}/LICENSE.BSD
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.12:devel/py-cffi@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}maturin>=1.7<2:devel/py-maturin@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=61.0.0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-rust>=1.7.0:devel/py-setuptools-rust@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
