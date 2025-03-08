@@ -13,12 +13,16 @@ COMMENT=	Standard Python binding to the SQLite3 library (Python ${PYTHON_VER})
 LICENSE=	PSFL
 LICENSE_FILE=	${WRKDIR}/Python-${DISTVERSION}/LICENSE
 
+BUILD_DEPENDS=	${UNZIP_CMD}:archivers/unzip \
+		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}cython3>0:lang/cython3@${PY_FLAVOR}
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 
-PORTSCOUT=	ignore:1
-
 USES=		compiler:c11 python tar:xz
-USE_PYTHON=	autoplist distutils allflavors
+USE_PYTHON=	autoplist allflavors pep517
+
+PORTSCOUT=	ignore:1
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC_SUBDIR=	Modules
@@ -31,6 +35,16 @@ TESTING_UNSAFE=	ModuleNotFoundError: No module named '_sqlite3'
 
 post-extract:
 	@${CP} ${FILESDIR}/setup.py ${WRKSRC}
+	@${SED} -e 's|PY_VERSION|${PYTHON_DISTVERSION}|' ${FILESDIR}/pyproject.toml.in >>  ${WRKSRC}/pyproject.toml
+	${TOUCH} ${WRKSRC}/__init__.py
+
+do-install:
+	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload
+	@cd ${INSTALL_WRKSRC} \
+	    && ${UNZIP_CMD} -d ${STAGEDIR}${PYTHONPREFIX_LIBDIR}/lib-dynload ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
+	@${PYTHON_CMD} -B ${PORTSDIR}/Mk/Scripts/strip_RECORD.py \
+	    ${STAGEDIR}/${PYTHONPREFIX_LIBDIR}/lib-dynload/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.dist-info/RECORD | \
+	    ${SED} -e 's|^|${PYTHONPREFIX_LIBDIR}/lib-dynload/|' >> ${_PYTHONPKGLIST}
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PYTHON_LIBDIR}/lib-dynload/_sqlite3*.so
