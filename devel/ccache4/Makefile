@@ -1,6 +1,6 @@
 PORTNAME=	ccache
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.10.2
+DISTVERSION=	4.11.3
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
 
@@ -16,45 +16,45 @@ USE_GITHUB=	yes
 
 # /bin/bash -> /bin/sh to reduce tests dep.
 SHEBANG_FILES=	test/*
-SHEBANG_GLOB=	*.sh *.bash
+SHEBANG_GLOB=	*.bash *.sh
 bash_CMD=	/bin/sh
 
-CMAKE_ARGS+=	-D DEPS=LOCAL
-CMAKE_OFF=	WARNINGS_AS_ERRORS \
-		ENABLE_IPO \
-		ENABLE_TRACING \
-		REDIS_STORAGE_BACKEND
+CMAKE_ARGS+=	-DDEPS=LOCAL
+CMAKE_OFF=	ENABLE_IPO ENABLE_TRACING REDIS_STORAGE_BACKEND \
+		WARNINGS_AS_ERRORS
 
 CONFLICTS_INSTALL?=	ccache ccache-static
 
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
-SUB_FILES=	ccache_clean ccache-update-links.sh world-ccache
+SUB_FILES=		ccache-update-links.sh ccache_clean world-ccache
 
-PORTDOCS=	AUTHORS.adoc AUTHORS.html MANUAL.adoc MANUAL.html \
-		NEWS.adoc NEWS.html
+PORTDOCS=	AUTHORS.adoc AUTHORS.html MANUAL.adoc MANUAL.html NEWS.adoc \
+		NEWS.html
 
 OPTIONS_DEFINE=		CLANGLINK DOCS LLVMLINK STATIC TEST
 OPTIONS_DEFAULT=	CLANGLINK LLVMLINK
 OPTIONS_SUB=		yes
 
-CLANGLINK_DESC=		Create clang compiler links if clang is installed
-LLVMLINK_DESC=		Create llvm compiler links if llvm is installed
+CLANGLINK_DESC=	Create clang compiler links if clang is installed
+LLVMLINK_DESC=	Create llvm compiler links if llvm is installed
 
 DOCS_BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor
-DOCS_USES=		perl5
+DOCS_USES=		groff:run perl5
 DOCS_CMAKE_BOOL=	ENABLE_DOCUMENTATION
 DOCS_ALL_TARGET=	all doc
 
-STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libzstd.a:archivers/zstd \
-			${LOCALBASE}/lib/libxxhash.a:devel/xxhash
-STATIC_LIB_DEPENDS_OFF=	libzstd.so:archivers/zstd \
-			libfmt.so:devel/libfmt \
-			libxxhash.so:devel/xxhash
+STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libxxhash.a:devel/xxhash \
+			${LOCALBASE}/lib/libzstd.a:archivers/zstd
+STATIC_LIB_DEPENDS_OFF=	libfmt.so:devel/libfmt \
+			libxxhash.so:devel/xxhash \
+			libzstd.so:archivers/zstd
 STATIC_CMAKE_BOOL=	STATIC_LINK
-STATIC_CMAKE_ON=	-D DEP_BLAKE3=BUNDLED -D DEP_CPPHTTPLIB=BUNDLED \
-			-D DEP_FMT=BUNDLED -D DEP_NONSTDSPAN=BUNDLED \
-			-D DEP_TLEXPECTED=BUNDLED
+STATIC_CMAKE_ON=	-DDEP_BLAKE3=BUNDLED \
+			-DDEP_CPPHTTPLIB=BUNDLED \
+			-DDEP_FMT=BUNDLED \
+			-DDEP_NONSTDSPAN=BUNDLED \
+			-DDEP_TLEXPECTED=BUNDLED
 STATIC_LDFLAGS=		-static
 
 TEST_BUILD_DEPENDS=	doctest>=2.4.6:devel/doctest
@@ -63,27 +63,26 @@ TEST_TARGET=		check
 
 .include <bsd.port.pre.mk>
 
-CCLINKDIR=		libexec/ccache
-PLIST_SUB+=		CCLINKDIR="${CCLINKDIR}"
+CCLINKDIR=	libexec/ccache
+PLIST_SUB+=	CCLINKDIR="${CCLINKDIR}"
 
-.if ${ARCH}=="i386"
+.if ${ARCH} == "i386"
 CCACHE_COMPILERS+=	icc icpc
 .endif
 
 GNU_COMPILERS+=		11 12 13 14 15
 CCACHE_COMPILERS+=	cc c++ CC gcc g++ ${GNU_COMPILERS:S|^|gcc|} \
-			${GNU_COMPILERS:S|^|g++|} \
-			${GNU_COMPILERS:S|^|cpp|}
+			${GNU_COMPILERS:S|^|g++|} ${GNU_COMPILERS:S|^|cpp|}
 
 .if ${PORT_OPTIONS:MCLANGLINK}
-CLANG_COMPILERS+=	11 12 13 14 15 16 17 18 19 -devel
+CLANG_COMPILERS+=	11 12 13 14 15 16 17 18 19 20 -devel
 CCACHE_COMPILERS+=	clang clang++ ${CLANG_COMPILERS:S|^|clang|} \
 			${CLANG_COMPILERS:S|^|clang++|} \
 			${CLANG_COMPILERS:S|^|cpp|}
 .endif
 
 .if ${PORT_OPTIONS:MLLVMLINK}
-CCACHE_COMPILERS+=	llvm-gcc llvm-c++ llvm-g++
+CCACHE_COMPILERS+=	llvm-c++ llvm-g++ llvm-gcc
 .endif
 
 CCACHE_COMPILERS+=	${EXTRA_COMPILERS}
@@ -102,7 +101,9 @@ post-install:
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${BUILD_WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/*.adoc ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${BUILD_WRKSRC}/doc/*.html \
+		${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/*.adoc \
+		${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
