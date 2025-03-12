@@ -12,7 +12,7 @@ WWW=		https://wiki.gnome.org/Apps/Yelp/Tools
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING.GPL
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml5>0:devel/py-lxml5@${PY_FLAVOR} \
 		itstool:textproc/itstool \
 		xmllint:textproc/libxml2 \
 		xsltproc:textproc/libxslt \
