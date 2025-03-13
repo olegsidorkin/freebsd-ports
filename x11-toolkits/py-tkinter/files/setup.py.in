@@ -6,8 +6,11 @@ from setuptools import setup, Extension
 
 tkversion = "%%TK_VER%%"
 prefix = sysconfig.get_config_var('prefix')
+py_includes = sysconfig.get_config_var("INCLUDEPY") 
+
 x11base = sys.prefix or '/usr/X11R6'
 inc_dirs = [prefix + "/include",
+	    py_includes + "/internal",
             prefix + "/include/tcl" + tkversion,
             prefix + "/include/tk" + tkversion,
             x11base + "/include"]
