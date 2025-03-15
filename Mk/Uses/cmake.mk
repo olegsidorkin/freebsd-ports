@@ -211,4 +211,6 @@ do-test:
 .    endif
 .  endif
 
+_USES_POST+=	localbase
+
 .endif #!defined(_INCLUDE_USES_CMAKE_MK)
