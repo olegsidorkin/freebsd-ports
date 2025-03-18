@@ -14,7 +14,7 @@ LIB_DEPENDS+=	libpng.so:graphics/png \
 
 USES=		iconv libtool localbase pathfix tar:bzip2 autoreconf gettext
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoheader autoconf automake aclocal
+#USE_AUTOTOOLS=	autoheader autoconf automake aclocal
 CONFIGURE_ARGS=	--without-doxygen
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
