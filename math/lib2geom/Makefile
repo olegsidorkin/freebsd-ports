@@ -25,7 +25,7 @@ TEST_DEPENDS=	googletest>0:devel/googletest \
 USES=		compiler:c++20-lang cmake:testing gettext-runtime gnome localbase:ldflags \
 		pkgconfig python
 USE_GNOME=	cairo glib20 gtk30
-USE_PYTHON=	cython cython_test
+USE_PYTHON=	cython3 cython3_test
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	inkscape
