@@ -24,7 +24,6 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libqhull_r.so:math/qhull \
 		libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig
-
 RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}contourpy>=1.0.1:math/py-contourpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cycler>=0.10:devel/py-cycler@${PY_FLAVOR} \
