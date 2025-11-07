@@ -26,7 +26,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}
 
 USES=		fortran localbase:ldflags python
-USE_PYTHON=	pep517 cython autoplist pytest # tests fail, see https://github.com/scikit-umfpack/scikit-umfpack/issues/77
+USE_PYTHON=	pep517 cython3 autoplist pytest # tests fail, see https://github.com/scikit-umfpack/scikit-umfpack/issues/77
 
 CFLAGS+=	-I/usr/local/include/suitesparse
 CXXFLAGS+=	-I/usr/local/include/suitesparse
