@@ -20,7 +20,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=0.19:science/py-scipy@${PY_FLAVOR}
 
 USES=		fortran python
-USE_PYTHON=	distutils cython autoplist pytest
+USE_PYTHON=	distutils cython3 autoplist pytest
 USE_GITHUB=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include/suitesparse
