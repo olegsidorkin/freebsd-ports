@@ -31,7 +31,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiodns>=3.2.0:dns/py-aiodns@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-codspeed>=0:devel/py-pytest-codspeed@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent cython pep517 pytest
+USE_PYTHON=	autoplist concurrent cython3 pep517 pytest
 
 CPE_VENDOR=	aiohttp_project
 
