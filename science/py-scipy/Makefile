@@ -1,6 +1,5 @@
 PORTNAME=	scipy
-DISTVERSION=	1.11.1
-PORTREVISION=	5
+DISTVERSION=	1.16.2
 PORTEPOCH=	1
 CATEGORIES=	science python
 MASTER_SITES=	https://docs.scipy.org/doc/scipy-${DISTVERSION}/:doc \
@@ -11,9 +10,6 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:source \
 		scipy-html-${DISTVERSION}.zip:doc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-PATCH_SITES=	https://github.com/scipy/scipy/commit/
-PATCHFILES=	ab7d08c6148286059f6498ab5c3070268d13cbd9.patch:-p1 # https://github.com/scipy/scipy/pull/21069
-
 MAINTAINER=	python@FreeBSD.org
 COMMENT=	Scientific tools for Python
 WWW=		https://www.scipy.org/
@@ -22,12 +18,16 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PYNUMPY} \
-		${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}meson-python>0:devel/meson-python@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pythran>=0:devel/py-pythran@${PY_FLAVOR} \
-		unzip>0:archivers/unzip
+		${PYTHON_PKGNAMEPREFIX}setuptools>=60:devel/py-setuptools@${PY_FLAVOR} \
+		cmake:devel/cmake-core \
+		unzip>0:archivers/unzip \
+		xsimd>=8.1:devel/xsimd
 LIB_DEPENDS=	libblas.so:math/blas \
-		libopenblas.so:math/openblas
+		libopenblas.so:math/openblas \
+		libqhull_r.so:math/qhull
 RUN_DEPENDS=	${PYNUMPY}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gmpy2>0:math/py-gmpy2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mpmath>0:math/py-mpmath@${PY_FLAVOR} \
@@ -37,11 +37,9 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gmpy2>0:math/py-gmpy2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-xdist>0:devel/py-pytest-xdist@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-umfpack>0:math/py-scikit-umfpack@${PY_FLAVOR}
 
-USES=		compiler:c++14-lang cpe fortran python:3.10-3.12 shebangfix
-USE_PYTHON=	autoplist concurrent cython0 distutils
+USES=		compiler:c++17-lang cpe fortran localbase pkgconfig python:3.10-3.14 shebangfix
+USE_PYTHON=	autoplist concurrent cython pep517
 
-FFLAGS+=	-std=legacy
-LDFLAGS+=	-shared
 PYDISTUTILS_BUILDARGS=	--fcompiler=gnu95
 PYDISTUTILS_CONFIGUREARGS=	--fcompiler=gnu95
 
@@ -50,6 +48,7 @@ PIE_UNSAFE=	yes
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
+PEP517_BUILD_CONFIG_SETTING=	-Cbuild-dir=build -Csetup-args="-Duse-system-libraries=qhull"
 
 post-install:
 	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/scipy/ -name '*.so' | ${XARGS} ${STRIP_CMD}
