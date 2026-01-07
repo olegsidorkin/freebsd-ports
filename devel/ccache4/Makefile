@@ -4,6 +4,9 @@ DISTVERSION=	4.12.2
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
 
+PATCH_SITES=	https://github.com/ccache/ccache/commit/
+PATCHFILES=	464aaab4dbbdfaed0b66fb495ff47b75f87c296f.patch:-p1
+
 MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	Tool to minimize the compile time of C/C++ programs
 WWW=		https://ccache.dev/
