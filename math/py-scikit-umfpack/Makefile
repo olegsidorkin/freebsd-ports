@@ -25,7 +25,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}
 
 USES=		fortran localbase:ldflags python
-USE_PYTHON=	pep517 cython3 autoplist pytest
+USE_PYTHON=	pep517 cython autoplist pytest
 PEP517_BUILD_CONFIG_SETTING=	"-Cbuild-dir=_build"
 
 CFLAGS+=	-I/usr/local/include/suitesparse
