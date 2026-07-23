@@ -3,9 +3,9 @@ as a fallback instead.
 
 PR: 273476
 
---- CMakeLists.txt.orig	2024-12-02 23:31:44 UTC
+--- CMakeLists.txt.orig	2026-04-08 15:00:15 UTC
 +++ CMakeLists.txt
-@@ -135,7 +135,7 @@ if (HAVE_SOUNDCARD_H OR HAVE_SYS_SOUNDCARD_H)
+@@ -144,7 +144,7 @@ if ((HAVE_SOUNDCARD_H OR HAVE_SYS_SOUNDCARD_H) AND NOT
    #message(STATUS "OSS3_COMPILE_RESULT= ${OSS3_COMPILE_RESULT}")
    #message(STATUS "OSS4_COMPILE_RESULT= ${OSS4_COMPILE_RESULT}")
  
@@ -14,3 +14,11 @@ PR: 273476
        message(STATUS "Building with OSS 4 support")
        set(HAVE_OSS_4 true)
        add_definitions(-DHAVE_OSS_4)
+@@ -348,6 +348,7 @@ if (HAVE_SNDIO_MIXER)
+ 
+ if (HAVE_SNDIO_MIXER)
+   target_link_libraries(kmixcore PRIVATE sndio)
++  target_link_directories(kmixcore PRIVATE "/usr/local/lib")
+ endif ()
+ 
+ if (CANBERRA_FOUND)
