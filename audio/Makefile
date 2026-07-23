@@ -677,6 +677,7 @@
     SUBDIR += py-torchaudio
     SUBDIR += py-vosk
     SUBDIR += py-wavio
+    SUBDIR += py-webrtc-noise-gain
     SUBDIR += py-webrtcvad
     SUBDIR += py-zita-audiotools
     SUBDIR += py-zita-jacktools
