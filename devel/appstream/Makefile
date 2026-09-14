@@ -18,7 +18,7 @@ BUILD_DEPENDS=	bash-completion>0:shells/bash-completion \
 		docbook-xsl-ns>=0:textproc/docbook-xsl-ns \
 		gperf>0:devel/gperf \
 		itstool:textproc/itstool \
-		lmdb0>0:databases/lmdb0
+		lmdb>0:databases/lmdb
 LIB_DEPENDS?=	libcurl.so:ftp/curl \
 		libstemmer.so:textproc/snowballstemmer \
 		libxmlb.so:textproc/libxmlb \
