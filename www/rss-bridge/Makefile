@@ -1,5 +1,5 @@
 PORTNAME=	rss-bridge
-DISTVERSION=	2025-08-05
+DISTVERSION=	2026-09-30
 PORTEPOCH=	1
 CATEGORIES=	www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -15,6 +15,7 @@ USES=		php:web,flavors
 USE_GITHUB=	yes
 GH_ACCOUNT=	RSS-Bridge
 USE_PHP=	curl dom filter mbstring simplexml zip
+IGNORE_WITH_PHP=	82 83
 
 NO_ARCH=	yes
 NO_BUILD=	yes
