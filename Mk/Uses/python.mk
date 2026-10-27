@@ -771,7 +771,7 @@ PEP517_BUILD_DEPEND?=	${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR
 .  if defined(PYTHON_DISABLE_BYTECODE)
 PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --no-compile-bytecode --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:tl:C|[-_]+|_|g}-${DISTVERSION}*.whl
 .  else
-PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
+PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:tl:C|[-_]+|_|g}-${DISTVERSION}*.whl
 .  endif
 PEP517_INSTALL_DEPEND?=	${PYTHON_PKGNAMEPREFIX}installer>=0:devel/py-installer@${PY_FLAVOR}
 
@@ -1010,7 +1010,7 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 	@cd ${INSTALL_WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${PEP517_INSTALL_CMD}
 	@${PYTHON_CMD} -B ${PORTSDIR}/Mk/Scripts/strip_RECORD.py \
-		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
+		${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME:tl:C|[-_]+|_|g}-${DISTVERSION}*.dist-info/RECORD >> ${_PYTHONPKGLIST}
 	@${REINPLACE_CMD} \
 		-e '/\.pyc$$/d' \
 		-e 's|^|${PYTHONPREFIX_SITELIBDIR}/|' \
