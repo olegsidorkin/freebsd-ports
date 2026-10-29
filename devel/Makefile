@@ -8980,6 +8980,7 @@
     SUBDIR += wasi-libcxx20
     SUBDIR += wasi-libcxx21
     SUBDIR += wasi-libcxx22
+    SUBDIR += wasi-libcxx23
     SUBDIR += wasm-server-runner
     SUBDIR += wasm3
     SUBDIR += wasmer
