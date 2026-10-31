@@ -1,5 +1,6 @@
 PORTNAME=	angie-module-perl
 
+MODULE_PORTREVISION=	1
 COMMENT=	Angie Perl dynamic module
 
 LICENSE_FILE=	${WRKSRC}/LICENSE

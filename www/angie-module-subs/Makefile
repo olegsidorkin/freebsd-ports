@@ -1,4 +1,6 @@
 PORTNAME=	angie-module-subs
+MODULE_PORTREVISION=	1
+
 GH_TUPLE=	yaoweibin:ngx_http_substitutions_filter_module:e12e965ac1837ca709709f9a26f572a54d83430e:module
 
 COMMENT=	Angie substitutions filter dynamic module

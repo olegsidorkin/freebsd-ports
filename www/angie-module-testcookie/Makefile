@@ -1,4 +1,6 @@
 PORTNAME=	angie-module-testcookie
+MODULE_PORTREVISION=	1
+
 GH_TUPLE=	kyprizel:testcookie-nginx-module:7d263d4322b7de6b99b486e5e10ecaf0295890ad:module
 
 COMMENT=	Angie testcookie dynamic module
