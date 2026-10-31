@@ -1,4 +1,5 @@
 PORTNAME=	angie-module-xslt
+MODULE_PORTREVISION=	1
 
 COMMENT=	Angie XSLT dynamic module
 

@@ -1,5 +1,7 @@
 PORTNAME=	angie-module-image-filter
 
+MODULE_PORTREVISION=	1
+
 COMMENT=	Angie image-filter dynamic module
 
 LICENSE_FILE=	${WRKSRC}/LICENSE
