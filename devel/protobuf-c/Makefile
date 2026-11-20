@@ -8,6 +8,9 @@ MAINTAINER=	truckman@FreeBSD.org
 COMMENT=	Code generator and libraries to use Protocol Buffers from pure C
 WWW=		https://github.com/protobuf-c/protobuf-c
 
+PATCH_SITES=    https://github.com/protobuf-c/protobuf-c/commit/
+PATCHFILES=	d39f001b4578966600de0aaf7fc665eec6e057e5.patch:-p1
+
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
